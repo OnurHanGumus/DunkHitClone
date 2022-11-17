@@ -22,7 +22,6 @@ namespace Managers
         #region Serialized Variables
 
         [SerializeField] private bool isReadyForTouch, isFirstTimeTouchTaken;
-        //[SerializeField] FloatingJoystick joystick; //SimpleJoystick paketi eklenmeli
 
 
         #endregion
@@ -85,28 +84,23 @@ namespace Managers
 
         private void Update()
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 if (_isPlayerDead)
                 {
                     return;
                 }
-                //InputSignals.Instance.onInputDragged?.Invoke(new InputParams() //Joystick eklenince aç
-                //{
-                //    XValue = joystick.Horizontal,
-                //    ZValue = joystick.Vertical
-                //    //ClampValues = new Vector2(Data.ClampSides.x, Data.ClampSides.y)
-                //});
+                InputSignals.Instance.onClicked?.Invoke();
             }
 
-            if (Input.GetMouseButtonUp(0))
-            {
-                InputSignals.Instance.onInputDragged?.Invoke(new InputParams()
-                {
-                    XValue = 0,
-                    ZValue = 0
-                });
-            }
+            //if (Input.GetMouseButtonUp(0))
+            //{
+            //    InputSignals.Instance.onInputDragged?.Invoke(new InputParams()
+            //    {
+            //        XValue = 0,
+            //        ZValue = 0
+            //    });
+            //}
 
         }
 
@@ -125,14 +119,10 @@ namespace Managers
             isReadyForTouch = true;
         }
 
-        //private bool IsPointerOverUIElement() //Joystick'i doðru konumlandýrýrsan buna gerek kalmaz
-        //{
-        //    var eventData = new PointerEventData(EventSystem.current);
-        //    eventData.position = Input.mousePosition;
-        //    var results = new List<RaycastResult>();
-        //    EventSystem.current.RaycastAll(eventData, results);
-        //    return results.Count > 0;
-        //}
+        private bool IsPointerOverUIElement()
+        {
+            return EventSystem.current.IsPointerOverGameObject();
+        }
 
         private void OnReset()
         {
@@ -140,11 +130,5 @@ namespace Managers
             isReadyForTouch = false;
             isFirstTimeTouchTaken = false;
         }
-
-        private void OnChangePlayerLivingState()
-        {
-            _isPlayerDead = !_isPlayerDead;
-        }
-
     }
 }
