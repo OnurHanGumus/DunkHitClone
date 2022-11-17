@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     MinYPos: -2
-    MaxYPos: 2
+    MaxYPos: 6
+    StandartXPos: 5.25
+    InitializeXPos: 8
+    PotaTiming: 0.5
+    LeftEuler: 180
+    RightEuler: 0
