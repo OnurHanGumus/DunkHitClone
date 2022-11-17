@@ -24,6 +24,8 @@ namespace Controllers
         private bool _isPlayerDead = false;
         private bool _isRopeReached = false;
 
+        private bool _isOnRight = true;
+
 
         #endregion
         #endregion
@@ -51,7 +53,7 @@ namespace Controllers
             if (_isClicked)
             {
                 _rig.velocity = Vector3.zero;
-                _rig.AddForce(new Vector2(_data.ForceX, _data.ForceY), ForceMode2D.Impulse);
+                _rig.AddForce(new Vector2(_data.ForceX * (_isOnRight ? 1 : -1), _data.ForceY), ForceMode2D.Impulse);
                 _isClicked = false;
             }
         }
@@ -73,9 +75,13 @@ namespace Controllers
             _isPlayerDead = true;
             _rig.velocity = Vector3.zero;
         }
+
+        public void OnBasket()
+        {
+            _isOnRight = !_isOnRight;
+        }
         public void OnReset()
         {
-
             _isPlayerDead = false;
         }
     }

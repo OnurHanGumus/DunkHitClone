@@ -9,10 +9,11 @@ using Signals;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 namespace Managers
 {
-    public class PotaCreatorManager : MonoBehaviour
+    public class PotaManager : MonoBehaviour
     {
         #region Self Variables
 
@@ -46,6 +47,7 @@ namespace Managers
         private void OnEnable()
         {
             SubscribeEvents();
+            InitialMove();
         }
 
         private void SubscribeEvents()
@@ -67,15 +69,16 @@ namespace Managers
         }
 
         #endregion
-
+        
+        private void InitialMove()
+        {
+            _isOnRight = transform.position.x > 0;
+            transform.DOMoveX(_data.StandartXPos * (_isOnRight ? 1 : -1), _data.PotaTiming).SetEase(Ease.InOutBack);
+        }
 
         private void OnBasket()
         {
-            GameObject temp = PoolSignals.Instance.onGetObject?.Invoke(PoolEnums.Pota);
-            temp.transform.position = new Vector2(_data.InitializeXPos * (_isOnRight ? -1 : 1), Random.Range(_data.MinYPos, _data.MaxYPos + 1));
-            temp.transform.eulerAngles = new Vector3(0, (_isOnRight ? _data.LeftEuler : _data.RightEuler), 0);
-            temp.SetActive(true);
-            _isOnRight = !_isOnRight;
+            transform.DOMoveX(_data.InitializeXPos * (_isOnRight ? 1 : -1), _data.PotaTiming).SetEase(Ease.InOutBack).OnComplete(() => gameObject.SetActive(false)); 
         }
     }
 }
