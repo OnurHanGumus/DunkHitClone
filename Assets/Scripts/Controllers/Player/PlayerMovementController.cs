@@ -51,7 +51,7 @@ namespace Controllers
             if (_isClicked)
             {
                 _rig.velocity = Vector3.zero;
-                _rig.AddForce(new Vector2(_data.ForceX, _data.ForceY));
+                _rig.AddForce(new Vector2(_data.ForceX, _data.ForceY), ForceMode2D.Impulse);
                 _isClicked = false;
             }
         }

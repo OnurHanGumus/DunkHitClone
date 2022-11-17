@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 5020873446783148499}
   - component: {fileID: 5020873446783148501}
   - component: {fileID: 5020873446783148502}
+  - component: {fileID: 1028756375}
+  - component: {fileID: 1028756376}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,8 +101,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: be238b3d4d19bd14c821799cb5d7e066, type: 2}
+  m_GravityScale: 2
+  m_Material: {fileID: 0}
   m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -121,3 +123,28 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.009886146}
   serializedVersion: 2
   m_Radius: 0.57489216
+--- !u!114 &1028756375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5020873446783148498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c532afca9f87a14e92062794c2e3702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1028756376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5020873446783148498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec057280d17a93049ad4bcc8d9a8ea41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPlayerDead: 0
