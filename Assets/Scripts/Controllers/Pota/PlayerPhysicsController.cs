@@ -18,6 +18,7 @@ namespace Controllers
         #endregion
         #region Private Variables
         private PlayerData _data;
+        private bool _isPlayerOnGround = false;
         #endregion
         #endregion
         private void Awake()
@@ -54,10 +55,13 @@ namespace Controllers
                     Debug.Log(Mathf.Abs(rig.velocity.y));
                 }
             }
-            else if (manager.IsTimeUp && other.CompareTag("Ground"))
+            else if (other.CompareTag("Ground"))
             {
-                CoreGameSignals.Instance.onLevelFailed?.Invoke();
-                Debug.Log("faild");
+                _isPlayerOnGround = true;
+                if (manager.IsTimeUp)
+                {
+                    CoreGameSignals.Instance.onLevelFailed?.Invoke();
+                }
             }
 
         }
@@ -68,6 +72,14 @@ namespace Controllers
             {
                 isPlayerUp = false;
             }
+            else if (other.CompareTag("Ground"))
+            {
+                _isPlayerOnGround = false;
+            }
+        }
+        public bool IsOnGround()
+        {
+            return _isPlayerOnGround;
         }
     }
 }

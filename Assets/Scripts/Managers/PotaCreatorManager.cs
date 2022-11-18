@@ -24,7 +24,7 @@ namespace Managers
         #endregion
 
         #region Private Variables
-        private bool _isOnRight = true;
+        private bool _isOnRight = false;
         private PotaData _data;
         #endregion
 
@@ -51,12 +51,16 @@ namespace Managers
         private void SubscribeEvents()
         {
             LevelSignals.Instance.onBasket += OnBasket;
+            CoreGameSignals.Instance.onPlay += OnPlay;
+            CoreGameSignals.Instance.onRestartLevel += OnRestart;
 
         }
 
         private void UnsubscribeEvents()
         {
             LevelSignals.Instance.onBasket -= OnBasket;
+            CoreGameSignals.Instance.onPlay -= OnPlay;
+            CoreGameSignals.Instance.onRestartLevel -= OnRestart;
 
         }
 
@@ -71,11 +75,25 @@ namespace Managers
 
         private void OnBasket()
         {
+            GetNewPota();
+        }
+        private void GetNewPota()
+        {
             GameObject temp = PoolSignals.Instance.onGetObject?.Invoke(PoolEnums.Pota);
             temp.transform.position = new Vector2(_data.InitializeXPos * (_isOnRight ? -1 : 1), Random.Range(_data.MinYPos, _data.MaxYPos + 1));
             temp.transform.eulerAngles = new Vector3(0, (_isOnRight ? _data.LeftEuler : _data.RightEuler), 0);
             temp.SetActive(true);
             _isOnRight = !_isOnRight;
+        }
+
+        private void OnPlay()
+        {
+            GetNewPota();
+        }
+
+        private void OnRestart()
+        {
+            _isOnRight = false;
         }
     }
 }

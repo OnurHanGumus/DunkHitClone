@@ -50,10 +50,7 @@ public class LevelPanelController : MonoBehaviour
         }
     }
 
-    public void OnRestartLevel()
-    {
-        mainScoreText.text = 0.ToString();
-    }
+
 
     public void OnComboBasket(bool isCombo)
     {
@@ -136,4 +133,11 @@ public class LevelPanelController : MonoBehaviour
         _isCounterActive = true;
 
     }
+
+    public void OnRestartLevel()
+    {
+        mainScoreText.text = 0.ToString();
+        timeSlider.value = _data.SliderMaksTime;
+    }
+
 }

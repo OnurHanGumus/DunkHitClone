@@ -21,6 +21,7 @@ namespace Managers
         #endregion
 
         #region Serialized Variables
+        [SerializeField] private PlayerPhysicsController physicsController;
         #endregion
 
         #region Private Variables
@@ -110,8 +111,12 @@ namespace Managers
 
         private void OnTimeUp()
         {
-            Debug.Log("calisti");
             IsTimeUp = true;
+
+            if (physicsController.IsOnGround())
+            {
+                CoreGameSignals.Instance.onLevelFailed?.Invoke();
+            }
         }
     }
 }
