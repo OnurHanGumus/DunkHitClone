@@ -6,5 +6,6 @@ namespace Data.ValueObject
     public class PlayerData
     {
         public float ForceX = 10, ForceY = 100;
+        public float ComboValue = 3;
     }
 }

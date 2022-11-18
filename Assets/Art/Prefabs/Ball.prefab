@@ -61,6 +61,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerUp: 0
+  rig: {fileID: 5020873446783148501}
+  manager: {fileID: 1028756376}
 --- !u!1 &5020873446783148498
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,10 +14,13 @@ public class LevelPanelController : MonoBehaviour
     #region Public Variables
     #endregion
     #region SerializeField Variables
-    [SerializeField] private TextMeshProUGUI scoreTxt;
+    [SerializeField] private TextMeshProUGUI mainScoreText, increasedScoreText, comboCounterText, comboCommentText;
     #endregion
     #region Private Variables
+    private int _comboCounter = 1;
 
+    #endregion
+    #region Properties
 
     #endregion
     #endregion
@@ -34,12 +37,31 @@ public class LevelPanelController : MonoBehaviour
     {
         if (type.Equals(ScoreTypeEnums.Score))
         {
-            scoreTxt.text = score.ToString();
+            mainScoreText.text = score.ToString();
         }
     }
 
     public void OnRestartLevel()
     {
-        scoreTxt.text = 0.ToString();
+        mainScoreText.text = 0.ToString();
+    }
+
+    public void OnComboBasket(bool isCombo)
+    {
+        if (isCombo)
+        {
+            if (_comboCounter < 8)
+            {
+                _comboCounter *= 2;
+            }
+
+            ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Score, _comboCounter);
+        }
+        else
+        {
+            _comboCounter = 1;
+            ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Score, 1);
+
+        }
     }
 }
