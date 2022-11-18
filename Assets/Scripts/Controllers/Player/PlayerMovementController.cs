@@ -21,8 +21,6 @@ namespace Controllers
 
         private bool _isClicked = false;
         private bool _isNotStarted = true;
-        private bool _isPlayerDead = false;
-        private bool _isRopeReached = false;
 
         private bool _isOnRight = true;
 
@@ -45,7 +43,7 @@ namespace Controllers
 
         private void FixedUpdate()
         {
-            if (_isNotStarted || _isPlayerDead)
+            if (_isNotStarted)
             {
                 return;
             }
@@ -73,7 +71,6 @@ namespace Controllers
         }
         public void OnPlayerDie()
         {
-            _isPlayerDead = true;
             _rig.velocity = Vector3.zero;
         }
 
@@ -83,7 +80,11 @@ namespace Controllers
         }
         public void OnReset()
         {
-            _isPlayerDead = false;
+            _rig.gravityScale = 0;
+            _isOnRight = true;
+            transform.position = Vector2.zero;
+            _rig.velocity = Vector2.zero;
+
         }
     }
 }
