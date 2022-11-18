@@ -84,6 +84,10 @@ namespace Managers
 
         private void Update()
         {
+            if (IsPointerOverUIElement())
+            {
+                return;
+            }
             if (Input.GetMouseButtonDown(0))
             {
                 if (_isPlayerDead)
@@ -92,16 +96,6 @@ namespace Managers
                 }
                 InputSignals.Instance.onClicked?.Invoke();
             }
-
-            //if (Input.GetMouseButtonUp(0))
-            //{
-            //    InputSignals.Instance.onInputDragged?.Invoke(new InputParams()
-            //    {
-            //        XValue = 0,
-            //        ZValue = 0
-            //    });
-            //}
-
         }
 
         private void OnEnableInput()

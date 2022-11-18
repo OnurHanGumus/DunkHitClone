@@ -9,6 +9,7 @@ using Data.UnityObject;
 using DG.Tweening;
 using Data.ValueObject;
 using Managers;
+using UnityEngine.UI;
 
 public class LevelPanelController : MonoBehaviour
 {
@@ -18,11 +19,15 @@ public class LevelPanelController : MonoBehaviour
     #region SerializeField Variables
     [SerializeField] private TextMeshProUGUI mainScoreText, increasedScoreText, comboCounterText, comboCommentText;
     [SerializeField] private UIManager manager;
+    [SerializeField] private Slider timeSlider;
     #endregion
     #region Private Variables
     private int _comboCounter = 1;
     private int _comboIndeks = 0;
     private UIData _data;
+    private bool _isCounterActive = false;
+
+
     #endregion
     #region Properties
 
@@ -100,6 +105,26 @@ public class LevelPanelController : MonoBehaviour
 
             comboCounterText.text = "";
         }
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (_isCounterActive)
+        {
+            SliderValue();
+        }
+    }
+
+    private void SliderValue()
+    {
+        timeSlider.value -= _data.SliderDecreaseValue;
+    }
+
+    public void OnBasket()
+    {
+        timeSlider.value = _data.SliderMaksTime;
+        _isCounterActive = true;
 
     }
 }

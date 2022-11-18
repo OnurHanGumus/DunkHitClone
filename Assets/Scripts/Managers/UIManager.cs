@@ -51,6 +51,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel += levelPanelController.OnRestartLevel;
             ScoreSignals.Instance.onHighScoreChanged += highScorePanelController.OnUpdateText;
             ScoreSignals.Instance.onComboBasket += levelPanelController.OnComboBasket;
+            LevelSignals.Instance.onBasket += levelPanelController.OnBasket;
         }
 
         private void UnsubscribeEvents()
@@ -64,6 +65,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel -= levelPanelController.OnRestartLevel;
             ScoreSignals.Instance.onHighScoreChanged -= highScorePanelController.OnUpdateText;
             ScoreSignals.Instance.onComboBasket -= levelPanelController.OnComboBasket;
+            LevelSignals.Instance.onBasket -= levelPanelController.OnBasket;
         }
 
         private void OnDisable()

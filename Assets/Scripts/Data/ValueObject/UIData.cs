@@ -6,5 +6,7 @@ namespace Data.ValueObject
     public class UIData
     {
         public int IncreasedTextIncreasedYPos = 1734, IncreasedTextNormalYPos = 1619, IncreasedTextXPos = 540;
+        public float SliderDecreaseValue = 0.02f;
+        public int SliderMaksTime = 5;
     }
 }
