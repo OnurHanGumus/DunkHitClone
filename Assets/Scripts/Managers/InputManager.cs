@@ -33,7 +33,8 @@ namespace Managers
         private float _currentVelocity; //ref type
         private Vector2? _mousePosition; //ref type
         private Vector3 _moveVector; //ref type
-        private bool _isPlayerDead = false;
+        private bool _isTimeUp = false;
+        
 
         #endregion
 
@@ -63,6 +64,8 @@ namespace Managers
             CoreGameSignals.Instance.onReset += OnReset;
             //PlayerSignals.Instance.onPlayerDie += OnChangePlayerLivingState;  //Ölüþ animasyonu sýrasýnda playeri hareket ettiremememiz için varlar.
             //PlayerSignals.Instance.onPlayerSpawned += OnChangePlayerLivingState;
+            LevelSignals.Instance.onTimeUp += OnTimeUp;
+            LevelSignals.Instance.onBasket += OnBasket;
         }
 
         private void UnsubscribeEvents()
@@ -73,6 +76,9 @@ namespace Managers
             CoreGameSignals.Instance.onReset -= OnReset;
             //PlayerSignals.Instance.onPlayerDie -= OnChangePlayerLivingState;
             //PlayerSignals.Instance.onPlayerSpawned -= OnChangePlayerLivingState;
+            LevelSignals.Instance.onTimeUp -= OnTimeUp;
+            LevelSignals.Instance.onBasket -= OnBasket;
+
         }
 
         private void OnDisable()
@@ -90,7 +96,7 @@ namespace Managers
             }
             if (Input.GetMouseButtonDown(0))
             {
-                if (_isPlayerDead)
+                if (_isTimeUp)
                 {
                     return;
                 }
@@ -118,8 +124,19 @@ namespace Managers
             return EventSystem.current.IsPointerOverGameObject();
         }
 
+        private void OnTimeUp()
+        {
+            _isTimeUp = true;
+        }
+
+        private void OnBasket()
+        {
+            _isTimeUp = false;
+
+        }
         private void OnReset()
         {
+            _isTimeUp = false;
             _isTouching = false;
             isReadyForTouch = false;
             isFirstTimeTouchTaken = false;

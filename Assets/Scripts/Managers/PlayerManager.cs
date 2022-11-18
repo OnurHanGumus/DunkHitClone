@@ -16,7 +16,7 @@ namespace Managers
         #region Self Variables
 
         #region Public Variables
-        public bool IsPlayerDead = false;
+        public bool IsTimeUp = false;
 
         #endregion
 
@@ -62,6 +62,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
 
             LevelSignals.Instance.onBasket += _movementController.OnBasket;
+            LevelSignals.Instance.onTimeUp += OnTimeUp;
 
         }
 
@@ -79,6 +80,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
 
             LevelSignals.Instance.onBasket -= _movementController.OnBasket;
+            LevelSignals.Instance.onTimeUp -= OnTimeUp;
 
         }
 
@@ -97,11 +99,19 @@ namespace Managers
 
         private void OnPlay()
         {
-
+            IsTimeUp = false;
         }
         private void OnResetLevel()
         {
-            transform.position = new Vector3(0, 0, 10);
+            transform.position = new Vector3(0, 0, 0);
+            IsTimeUp = false;
+
+        }
+
+        private void OnTimeUp()
+        {
+            Debug.Log("calisti");
+            IsTimeUp = true;
         }
     }
 }

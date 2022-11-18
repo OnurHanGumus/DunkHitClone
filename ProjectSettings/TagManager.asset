@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TopPota
   - BottomPota
+  - Ground
   layers:
   - Default
   - TransparentFX

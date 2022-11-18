@@ -114,11 +114,20 @@ public class LevelPanelController : MonoBehaviour
         {
             SliderValue();
         }
+        else
+        {
+
+        }
     }
 
     private void SliderValue()
     {
         timeSlider.value -= _data.SliderDecreaseValue;
+        if (timeSlider.value <= 0)
+        {
+            _isCounterActive = false;
+            LevelSignals.Instance.onTimeUp?.Invoke();
+        }
     }
 
     public void OnBasket()

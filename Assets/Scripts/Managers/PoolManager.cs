@@ -105,7 +105,7 @@ public class PoolManager : MonoBehaviour
     {
         //reset
         ResetPool(PoolEnums.Pota);
-        ResetPool(PoolEnums.Particle);
+        //ResetPool(PoolEnums.Particle);
     }
 
     private void ResetPool(PoolEnums type)

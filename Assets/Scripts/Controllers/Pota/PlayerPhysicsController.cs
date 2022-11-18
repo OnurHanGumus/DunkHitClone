@@ -54,6 +54,12 @@ namespace Controllers
                     Debug.Log(Mathf.Abs(rig.velocity.y));
                 }
             }
+            else if (manager.IsTimeUp && other.CompareTag("Ground"))
+            {
+                CoreGameSignals.Instance.onLevelFailed?.Invoke();
+                Debug.Log("faild");
+            }
+
         }
 
         private void OnTriggerExit2D(Collider2D other)

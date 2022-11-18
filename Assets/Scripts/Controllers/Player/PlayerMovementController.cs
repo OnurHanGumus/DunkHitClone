@@ -69,6 +69,7 @@ namespace Controllers
         public void OnPlay()
         {
             _isNotStarted = false;
+            _rig.gravityScale = 2;
         }
         public void OnPlayerDie()
         {

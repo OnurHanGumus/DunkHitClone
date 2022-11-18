@@ -11,5 +11,6 @@ namespace Signals
     {
         public Func<int> onGetCurrentModdedLevel = delegate { return 0; };
         public UnityAction onBasket = delegate { };
+        public UnityAction onTimeUp = delegate { };
     }
 }
