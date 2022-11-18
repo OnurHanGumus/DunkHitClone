@@ -7,6 +7,8 @@ using TMPro;
 using System;
 using Data.UnityObject;
 using DG.Tweening;
+using Data.ValueObject;
+using Managers;
 
 public class LevelPanelController : MonoBehaviour
 {
@@ -15,11 +17,12 @@ public class LevelPanelController : MonoBehaviour
     #endregion
     #region SerializeField Variables
     [SerializeField] private TextMeshProUGUI mainScoreText, increasedScoreText, comboCounterText, comboCommentText;
+    [SerializeField] private UIManager manager;
     #endregion
     #region Private Variables
     private int _comboCounter = 1;
     private int _comboIndeks = 0;
-
+    private UIData _data;
     #endregion
     #region Properties
 
@@ -31,7 +34,7 @@ public class LevelPanelController : MonoBehaviour
     }
     private void Init()
     {
-
+        _data = manager.GetData();
 
     }
     public void OnScoreUpdateText(ScoreTypeEnums type, int score)
@@ -75,9 +78,9 @@ public class LevelPanelController : MonoBehaviour
     {
         increasedScoreText.alpha = 1;
 
-        increasedScoreText.transform.DOMoveY(1734, 0.5f).SetEase(Ease.InOutBack).OnComplete(()=>
+        increasedScoreText.transform.DOMoveY(_data.IncreasedTextIncreasedYPos, 0.5f).SetEase(Ease.InOutBack).OnComplete(()=>
 {
-    increasedScoreText.transform.position = new Vector2(540, 1619);
+    increasedScoreText.transform.position = new Vector2(_data.IncreasedTextXPos, _data.IncreasedTextNormalYPos);
     increasedScoreText.alpha = 0;
     });;
         increasedScoreText.text = "+" + value;
@@ -87,11 +90,14 @@ public class LevelPanelController : MonoBehaviour
     {
         if (isCombo)
         {
+            comboCounterText.alpha = 1;
             ++_comboIndeks;
             comboCounterText.text = "Perfect x" + _comboIndeks;
         }
         else
         {
+            comboCounterText.alpha = 0;
+
             comboCounterText.text = "";
         }
 

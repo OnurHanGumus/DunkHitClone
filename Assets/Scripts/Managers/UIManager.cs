@@ -2,6 +2,8 @@ using Controllers;
 using Enums;
 using Signals;
 using UnityEngine;
+using Data.ValueObject;
+using Data.UnityObject;
 
 namespace Managers
 {
@@ -17,9 +19,20 @@ namespace Managers
         [SerializeField] private HighScorePanelController highScorePanelController;
 
         #endregion
-
+        #region Private Variables
+        private UIData _data;
         #endregion
+        #endregion
+        private void Awake()
+        {
+            Init();
+        }
+        private void Init() 
+        {
+            _data = GetData();
+        }
 
+        public UIData GetData() => Resources.Load<CD_UI>("Data/CD_UI").Data;
         #region Event Subscriptions
 
         private void OnEnable()
