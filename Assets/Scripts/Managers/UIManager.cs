@@ -29,10 +29,10 @@ namespace Managers
         }
         private void Init() 
         {
-            _data = GetData();
+            _data = GetUIData();
         }
 
-        public UIData GetData() => Resources.Load<CD_UI>("Data/CD_UI").Data;
+        public UIData GetUIData() => Resources.Load<CD_UI>("Data/CD_UI").Data;
         #region Event Subscriptions
 
         private void OnEnable()

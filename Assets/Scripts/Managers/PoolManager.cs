@@ -17,9 +17,6 @@ public class PoolManager : MonoBehaviour
 
 
     [SerializeField] private int amountPota = 2;
-    [SerializeField] private int amountParticle = 5;
-
-
 
     #endregion
     #region Private Variables
@@ -105,7 +102,6 @@ public class PoolManager : MonoBehaviour
     {
         //reset
         ResetPool(PoolEnums.Pota);
-        //ResetPool(PoolEnums.Particle);
     }
 
     private void ResetPool(PoolEnums type)

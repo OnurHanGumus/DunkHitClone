@@ -100,11 +100,6 @@ namespace Managers
 
         #endregion
 
-        private Transform OnGetPlayer()
-        {
-            return transform;
-        }
-
         private void OnPlay()
         {
             IsTimeUp = false;
@@ -113,7 +108,6 @@ namespace Managers
         {
             transform.position = new Vector3(0, 0, 0);
             IsTimeUp = false;
-
         }
 
         private void OnTimeUp()

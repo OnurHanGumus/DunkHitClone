@@ -1006,8 +1006,6 @@ MonoBehaviour:
     HorizontalInputSpeed: 2
     ClampSides: {x: -3, y: 3}
     ClampSpeed: 0.007
-  isReadyForTouch: 0
-  isFirstTimeTouchTaken: 0
 --- !u!1 &182098046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,7 +2336,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   potaPrefab: {fileID: 7129121804408424188, guid: 2195d5e007b802b4aa5db7fa6d3895fe, type: 3}
   amountPota: 3
-  amountParticle: 5
 --- !u!4 &748046454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1364026926668576887, guid: b28aa6446d2bea8428e632e85d510d6f, type: 3}

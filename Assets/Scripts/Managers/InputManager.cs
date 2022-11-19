@@ -21,20 +21,16 @@ namespace Managers
 
         #region Serialized Variables
 
-        [SerializeField] private bool isReadyForTouch, isFirstTimeTouchTaken;
 
 
         #endregion
 
         #region Private Variables
 
-        private bool _isTouching;
-
-        private float _currentVelocity; //ref type
-        private Vector2? _mousePosition; //ref type
-        private Vector3 _moveVector; //ref type
         private bool _isTimeUp = false;
-        
+        private bool _isReadyForTouch;
+
+
 
         #endregion
 
@@ -90,6 +86,10 @@ namespace Managers
 
         private void Update()
         {
+            if (!_isReadyForTouch)
+            {
+                return;
+            }
             if (IsPointerOverUIElement())
             {
                 return;
@@ -106,17 +106,17 @@ namespace Managers
 
         private void OnEnableInput()
         {
-            isReadyForTouch = true;
+            _isReadyForTouch = true;
         }
 
         private void OnDisableInput()
         {
-            isReadyForTouch = false;
+            _isReadyForTouch = false;
         }
 
         private void OnPlay()
         {
-            isReadyForTouch = true;
+            _isReadyForTouch = true;
         }
 
         private bool IsPointerOverUIElement()
@@ -137,9 +137,7 @@ namespace Managers
         private void OnReset()
         {
             _isTimeUp = false;
-            _isTouching = false;
-            isReadyForTouch = false;
-            isFirstTimeTouchTaken = false;
+            _isReadyForTouch = false;
         }
     }
 }

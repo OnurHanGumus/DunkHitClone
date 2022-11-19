@@ -79,10 +79,4 @@ public class GameOverPanelController : MonoBehaviour
         UISignals.Instance.onClosePanel?.Invoke(UIPanels.GameOverPanel);
         UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
     }
-
-    [Button]
-    public void Open()
-    {
-        CoreGameSignals.Instance.onLevelFailed?.Invoke();
-    }
 }

@@ -24,7 +24,8 @@ public class LevelPanelController : MonoBehaviour
     #region Private Variables
     private int _comboCounter = 1;
     private int _comboIndeks = 0;
-    private UIData _data;
+    private UIData _uiData;
+    private ComboData _comboData;
     private bool _isCounterActive = false;
 
 
@@ -39,9 +40,10 @@ public class LevelPanelController : MonoBehaviour
     }
     private void Init()
     {
-        _data = manager.GetData();
-
+        _uiData = manager.GetUIData();
+        _comboData = GetComboData();
     }
+    public ComboData GetComboData() => Resources.Load<CD_Combo>("Data/CD_Combo").Data;
 
     private void FixedUpdate()
     {
@@ -68,9 +70,9 @@ public class LevelPanelController : MonoBehaviour
     {
         if (isCombo)
         {
-            if (_comboCounter < 8)
+            if (_comboCounter < _comboData.MaksComboValue)
             {
-                _comboCounter *= 2;
+                _comboCounter *= _comboData.ComboValueMultiplier;
             }
 
             ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Score, _comboCounter);
@@ -92,9 +94,9 @@ public class LevelPanelController : MonoBehaviour
     {
         increasedScoreText.alpha = 1;
 
-        increasedScoreText.transform.DOMoveY(_data.IncreasedTextIncreasedYPos, 0.5f).SetEase(Ease.InOutBack).OnComplete(()=>
+        increasedScoreText.transform.DOMoveY(_uiData.IncreasedTextIncreasedYPos, _uiData.IncreasedTextRiseDelay).SetEase(Ease.InOutBack).OnComplete(()=>
 {
-    increasedScoreText.transform.position = new Vector2(_data.IncreasedTextXPos, _data.IncreasedTextNormalYPos);
+    increasedScoreText.transform.position = new Vector2(_uiData.IncreasedTextXPos, _uiData.IncreasedTextNormalYPos);
     increasedScoreText.alpha = 0;
     });;
         increasedScoreText.text = "+" + value;
@@ -119,7 +121,7 @@ public class LevelPanelController : MonoBehaviour
 
     private void SliderValue()
     {
-        timeSlider.value -= _data.SliderDecreaseValue;
+        timeSlider.value -= _uiData.SliderDecreaseValue;
         if (timeSlider.value <= 0)
         {
             _isCounterActive = false;
@@ -129,7 +131,7 @@ public class LevelPanelController : MonoBehaviour
 
     public void OnBasket()
     {
-        timeSlider.value = _data.SliderMaksTime;
+        timeSlider.value = _uiData.SliderMaksTime;
         _isCounterActive = true;
 
     }
@@ -137,7 +139,7 @@ public class LevelPanelController : MonoBehaviour
     public void OnRestartLevel()
     {
         mainScoreText.text = 0.ToString();
-        timeSlider.value = _data.SliderMaksTime;
+        timeSlider.value = _uiData.SliderMaksTime;
     }
 
 }

@@ -43,7 +43,7 @@ namespace Controllers
                 {
                     LevelSignals.Instance.onBasket?.Invoke();
                     //ScoreSignals.Instance.onScoreIncrease?.Invoke(ScoreTypeEnums.Score, 1);
-                    if (Mathf.Abs(rig.velocity.y) > _data.ComboValue)
+                    if (Mathf.Abs(rig.velocity.y) > _data.ComboTresholdSpeedValue)
                     {
                         ScoreSignals.Instance.onComboBasket?.Invoke(true);
                     }
