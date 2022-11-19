@@ -95,11 +95,18 @@ public class LevelPanelController : MonoBehaviour
         increasedScoreText.alpha = 1;
 
         increasedScoreText.transform.DOMoveY(_uiData.IncreasedTextIncreasedYPos, _uiData.IncreasedTextRiseDelay).SetEase(Ease.InOutBack).OnComplete(()=>
-{
-    increasedScoreText.transform.position = new Vector2(_uiData.IncreasedTextXPos, _uiData.IncreasedTextNormalYPos);
-    increasedScoreText.alpha = 0;
-    });;
+        {
+            StartCoroutine(IncreaseTextEffect());
+        });
         increasedScoreText.text = "+" + value;
+    }
+
+    private IEnumerator IncreaseTextEffect()
+    {
+        yield return new WaitForSeconds(_uiData.IncreasedTextShowTime);
+        increasedScoreText.alpha = 0;
+        increasedScoreText.transform.position = new Vector2(_uiData.IncreasedTextXPos, _uiData.IncreasedTextNormalYPos);
+
     }
 
     private void UpdateComboCounterText(bool isCombo)

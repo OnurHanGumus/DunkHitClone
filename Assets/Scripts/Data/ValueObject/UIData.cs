@@ -9,5 +9,6 @@ namespace Data.ValueObject
         public float SliderDecreaseValue = 0.02f;
         public int SliderMaksTime = 5;
         public float IncreasedTextRiseDelay = 0.5f;
+        public float IncreasedTextShowTime = 0.5f;
     }
 }
