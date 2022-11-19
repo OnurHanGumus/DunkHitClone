@@ -42,6 +42,18 @@ public class LevelPanelController : MonoBehaviour
         _data = manager.GetData();
 
     }
+
+    private void FixedUpdate()
+    {
+        if (_isCounterActive)
+        {
+            SliderValue();
+        }
+        else
+        {
+
+        }
+    }
     public void OnScoreUpdateText(ScoreTypeEnums type, int score)
     {
         if (type.Equals(ScoreTypeEnums.Score))
@@ -103,18 +115,6 @@ public class LevelPanelController : MonoBehaviour
             comboCounterText.text = "";
         }
 
-    }
-
-    private void FixedUpdate()
-    {
-        if (_isCounterActive)
-        {
-            SliderValue();
-        }
-        else
-        {
-
-        }
     }
 
     private void SliderValue()

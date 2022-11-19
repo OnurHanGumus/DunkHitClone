@@ -22,6 +22,7 @@ namespace Managers
 
         #region Serialized Variables
         [SerializeField] private PlayerPhysicsController physicsController;
+        [SerializeField] private PlayerParticleController particleController;
         #endregion
 
         #region Private Variables
@@ -60,10 +61,13 @@ namespace Managers
             CoreGameSignals.Instance.onPlay += OnPlay;
             CoreGameSignals.Instance.onLevelFailed += _movementController.OnPlayerDie;
             CoreGameSignals.Instance.onRestartLevel += _movementController.OnReset;
+            CoreGameSignals.Instance.onRestartLevel += particleController.OnRestartLevel;
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
 
             LevelSignals.Instance.onBasket += _movementController.OnBasket;
             LevelSignals.Instance.onTimeUp += OnTimeUp;
+
+            ScoreSignals.Instance.onComboBasket += particleController.OnComboIncreased;
 
         }
 
@@ -78,10 +82,13 @@ namespace Managers
             CoreGameSignals.Instance.onPlay -= _movementController.OnPlay;
             CoreGameSignals.Instance.onLevelFailed -= _movementController.OnPlayerDie;
             CoreGameSignals.Instance.onRestartLevel -= _movementController.OnReset;
+            CoreGameSignals.Instance.onRestartLevel -= particleController.OnRestartLevel;
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
 
             LevelSignals.Instance.onBasket -= _movementController.OnBasket;
             LevelSignals.Instance.onTimeUp -= OnTimeUp;
+
+            ScoreSignals.Instance.onComboBasket -= particleController.OnComboIncreased;
 
         }
 
