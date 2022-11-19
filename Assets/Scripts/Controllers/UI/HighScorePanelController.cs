@@ -12,7 +12,7 @@ public class HighScorePanelController : MonoBehaviour
     #region Public Variables
     #endregion
     #region SerializeField Variables
-    [SerializeField] private TextMeshProUGUI highScoreTxt;
+    [SerializeField] private TextMeshProUGUI highScoreTxt, highScoreGameOverPanel;
     #endregion
     #endregion
     private void Start()
@@ -24,6 +24,7 @@ public class HighScorePanelController : MonoBehaviour
     {
         int score = SaveSignals.Instance.onGetScore(SaveLoadStates.Score, SaveFiles.SaveFile);
         highScoreTxt.text = "BEST " + score.ToString();
+        highScoreGameOverPanel.text = "BEST " + score.ToString();
     }
 
     public void CloseScorePanel()
@@ -35,5 +36,7 @@ public class HighScorePanelController : MonoBehaviour
     public void OnUpdateText(int newValue)
     {
         highScoreTxt.text = "BEST " + newValue.ToString();
+        highScoreGameOverPanel.text = "BEST " + newValue.ToString();
+
     }
 }

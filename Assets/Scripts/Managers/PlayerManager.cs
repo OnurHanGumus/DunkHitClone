@@ -65,6 +65,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel += OnResetLevel;
 
             LevelSignals.Instance.onBasket += _movementController.OnBasket;
+            LevelSignals.Instance.onBasket += OnBasket;
             LevelSignals.Instance.onTimeUp += OnTimeUp;
 
             ScoreSignals.Instance.onComboBasket += particleController.OnComboIncreased;
@@ -86,6 +87,7 @@ namespace Managers
             CoreGameSignals.Instance.onRestartLevel -= OnResetLevel;
 
             LevelSignals.Instance.onBasket -= _movementController.OnBasket;
+            LevelSignals.Instance.onBasket -= OnBasket;
             LevelSignals.Instance.onTimeUp -= OnTimeUp;
 
             ScoreSignals.Instance.onComboBasket -= particleController.OnComboIncreased;
@@ -118,6 +120,11 @@ namespace Managers
             {
                 CoreGameSignals.Instance.onLevelFailed?.Invoke();
             }
+        }
+
+        private void OnBasket()
+        {
+            IsTimeUp = false;
         }
     }
 }

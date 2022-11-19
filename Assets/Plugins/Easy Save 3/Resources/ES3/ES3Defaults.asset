@@ -32,8 +32,8 @@ MonoBehaviour:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
     - Cinemachine
-    - AllIn1VfxDemoScriptAssemblies
     - AllIn1VfxAssmebly
+    - AllIn1VfxDemoScriptAssemblies
     - AllIn1VfxTexDemoAssembly
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0

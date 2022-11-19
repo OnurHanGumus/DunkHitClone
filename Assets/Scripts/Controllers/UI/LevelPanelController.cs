@@ -145,6 +145,9 @@ public class LevelPanelController : MonoBehaviour
 
     public void OnRestartLevel()
     {
+        _isCounterActive = false;
+        _comboCounter = 1;
+        UpdateComboCounterText(false);
         mainScoreText.text = 0.ToString();
         timeSlider.value = _uiData.SliderMaksTime;
     }
