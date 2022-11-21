@@ -76,11 +76,10 @@ namespace Managers
         {
 
             InputSignals.Instance.onClicked -= _movementController.OnClicked;
-            CoreGameSignals.Instance.onPlay -= OnPlay;
-
 
 
             CoreGameSignals.Instance.onPlay -= _movementController.OnPlay;
+            CoreGameSignals.Instance.onPlay -= OnPlay;
             CoreGameSignals.Instance.onLevelFailed -= _movementController.OnPlayerDie;
             CoreGameSignals.Instance.onRestartLevel -= _movementController.OnReset;
             CoreGameSignals.Instance.onRestartLevel -= particleController.OnRestartLevel;

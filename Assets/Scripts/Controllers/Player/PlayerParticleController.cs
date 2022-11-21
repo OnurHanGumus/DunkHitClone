@@ -12,7 +12,7 @@ public class PlayerParticleController : MonoBehaviour
     [SerializeField] private List<GameObject> particles;
     #endregion
     #region Private Variables
-    [ShowInInspector] private int _indeks = 0;
+    private int _indeks = 0;
     #endregion
     #endregion
 

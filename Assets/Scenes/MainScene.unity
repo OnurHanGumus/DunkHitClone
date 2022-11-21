@@ -850,6 +850,8 @@ MonoBehaviour:
     HorizontalInputSpeed: 2
     ClampSides: {x: -3, y: 3}
     ClampSpeed: 0.007
+  isTimeUp: 0
+  isReadyForTouch: 0
 --- !u!1 &192889013
 GameObject:
   m_ObjectHideFlags: 0

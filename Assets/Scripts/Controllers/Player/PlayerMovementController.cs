@@ -21,7 +21,7 @@ namespace Controllers
 
         private bool _isClicked = false;
         private bool _isNotStarted = true;
-
+        
         private bool _isOnRight = true;
 
 

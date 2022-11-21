@@ -136,6 +136,7 @@ public class LevelPanelController : MonoBehaviour
         {
             _isCounterActive = false;
             LevelSignals.Instance.onTimeUp?.Invoke();
+            Debug.Log("time up");
         }
         if (timeSlider.value <= (_uiData.SliderMaksTime / 2f))
         {

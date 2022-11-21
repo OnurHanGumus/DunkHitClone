@@ -17,3 +17,8 @@ MonoBehaviour:
     IncreasedTextNormalYPos: 1619
     IncreasedTextXPos: 540
     SliderDecreaseValue: 0.02
+    SliderMaksTime: 5
+    IncreasedTextRiseDelay: 0.5
+    IncreasedTextShowTime: 0.5
+    FadeMaksValue: 0.2
+    FadeDelay: 0.3

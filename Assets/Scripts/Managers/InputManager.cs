@@ -6,6 +6,7 @@ using Keys;
 using Signals;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Sirenix.OdinInspector;
 
 namespace Managers
 {
@@ -16,6 +17,10 @@ namespace Managers
         #region Public Variables
 
         [Header("Data")] public InputData Data;
+        [SerializeField] private bool isTimeUp = false;
+        [SerializeField] private bool isReadyForTouch;
+
+
 
         #endregion
 
@@ -26,9 +31,6 @@ namespace Managers
         #endregion
 
         #region Private Variables
-
-        private bool _isTimeUp = false;
-        private bool _isReadyForTouch;
 
 
 
@@ -86,7 +88,7 @@ namespace Managers
 
         private void Update()
         {
-            if (!_isReadyForTouch)
+            if (!isReadyForTouch)
             {
                 return;
             }
@@ -96,7 +98,7 @@ namespace Managers
             }
             if (Input.GetMouseButtonDown(0))
             {
-                if (_isTimeUp)
+                if (isTimeUp)
                 {
                     return;
                 }
@@ -106,17 +108,17 @@ namespace Managers
 
         private void OnEnableInput()
         {
-            _isReadyForTouch = true;
+            isReadyForTouch = true;
         }
 
         private void OnDisableInput()
         {
-            _isReadyForTouch = false;
+            isReadyForTouch = false;
         }
 
         private void OnPlay()
         {
-            _isReadyForTouch = true;
+            isReadyForTouch = true;
         }
 
         private bool IsPointerOverUIElement()
@@ -126,18 +128,18 @@ namespace Managers
 
         private void OnTimeUp()
         {
-            _isTimeUp = true;
+            isTimeUp = true;
         }
 
         private void OnBasket()
         {
-            _isTimeUp = false;
+            isTimeUp = false;
 
         }
         private void OnReset()
         {
-            _isTimeUp = false;
-            _isReadyForTouch = false;
+            isTimeUp = false;
+            isReadyForTouch = false;
         }
     }
 }
