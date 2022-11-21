@@ -111,14 +111,14 @@ namespace Managers
         public void NextLevel()
         {
             CoreGameSignals.Instance.onNextLevel?.Invoke();
-            UISignals.Instance.onClosePanel?.Invoke(UIPanels.WinPanel);
+            //UISignals.Instance.onClosePanel?.Invoke(UIPanels.WinPanel);
             UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
         }
 
         public void RestartLevel()
         {
             CoreGameSignals.Instance.onRestartLevel?.Invoke();
-            UISignals.Instance.onClosePanel?.Invoke(UIPanels.FailPanel);
+            //UISignals.Instance.onClosePanel?.Invoke(UIPanels.FailPanel);
             UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
         }
 
@@ -129,12 +129,12 @@ namespace Managers
         }
         public void HighScoreButton()
         {
-            UISignals.Instance.onOpenPanel?.Invoke(UIPanels.HighScorePanel);
+            //UISignals.Instance.onOpenPanel?.Invoke(UIPanels.HighScorePanel);
             UISignals.Instance.onClosePanel?.Invoke(UIPanels.StartPanel);
         }
         public void OptionsButton()
         {
-            UISignals.Instance.onOpenPanel?.Invoke(UIPanels.OptionsPanel);
+            //UISignals.Instance.onOpenPanel?.Invoke(UIPanels.OptionsPanel);
             UISignals.Instance.onClosePanel?.Invoke(UIPanels.StartPanel);
         }
     }

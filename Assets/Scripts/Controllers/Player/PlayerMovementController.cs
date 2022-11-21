@@ -67,11 +67,11 @@ namespace Controllers
         public void OnPlay()
         {
             _isNotStarted = false;
-            _rig.gravityScale = 2;
+            _rig.gravityScale = _data.GravityScale;
         }
         public void OnPlayerDie()
         {
-            _rig.velocity = Vector3.zero;
+            //_rig.velocity = Vector3.zero;
         }
 
         public void OnBasket()

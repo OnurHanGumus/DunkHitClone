@@ -29,7 +29,7 @@ public class HighScorePanelController : MonoBehaviour
 
     public void CloseScorePanel()
     {
-        UISignals.Instance.onClosePanel?.Invoke(UIPanels.HighScorePanel);
+        //UISignals.Instance.onClosePanel?.Invoke(UIPanels.HighScorePanel);
         UISignals.Instance.onOpenPanel?.Invoke(UIPanels.StartPanel);
     }
 

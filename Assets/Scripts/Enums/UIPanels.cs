@@ -8,11 +8,11 @@ namespace Enums
         StartPanel,
         LevelPanel,
         PausePanel,
-        WinPanel,
-        FailPanel,
-        //MiniGamePanel,
-        HighScorePanel,
-        OptionsPanel,
+        //WinPanel,
+        //FailPanel,
+        ////MiniGamePanel,
+        //HighScorePanel,
+        //OptionsPanel,
         GameOverPanel,
     }
 }

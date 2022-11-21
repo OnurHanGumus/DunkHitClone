@@ -20,6 +20,9 @@ public class LevelPanelController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI mainScoreText, increasedScoreText, comboCounterText, comboCommentText;
     [SerializeField] private UIManager manager;
     [SerializeField] private Slider timeSlider;
+    [SerializeField] private CanvasGroup fader;
+    [SerializeField] private Image sliderFillObject;
+    [SerializeField] private Color32 sliderNormalColor, sliderHurryColor;
     #endregion
     #region Private Variables
     private int _comboCounter = 1;
@@ -134,13 +137,18 @@ public class LevelPanelController : MonoBehaviour
             _isCounterActive = false;
             LevelSignals.Instance.onTimeUp?.Invoke();
         }
+        if (timeSlider.value <= (_uiData.SliderMaksTime / 2f))
+        {
+            sliderFillObject.color = sliderHurryColor;
+        }
     }
 
     public void OnBasket()
     {
         timeSlider.value = _uiData.SliderMaksTime;
         _isCounterActive = true;
-
+        sliderFillObject.color = sliderNormalColor;
+        Fader();
     }
 
     public void OnRestartLevel()
@@ -149,7 +157,16 @@ public class LevelPanelController : MonoBehaviour
         _comboCounter = 1;
         UpdateComboCounterText(false);
         mainScoreText.text = 0.ToString();
+        sliderFillObject.color = sliderNormalColor;
         timeSlider.value = _uiData.SliderMaksTime;
+    }
+
+    private void Fader()
+    {
+        fader.DOFade(_uiData.FadeMaksValue, _uiData.FadeDelay).OnComplete(()=> 
+        {
+            fader.DOFade(0f, _uiData.FadeDelay);
+        });
     }
 
 }
