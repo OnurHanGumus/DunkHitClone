@@ -74,11 +74,13 @@ namespace Managers
         {
             _isOnRight = transform.position.x > 0;
             transform.DOMoveX(_data.StandartXPos * (_isOnRight ? 1 : -1), _data.PotaTiming).SetEase(Ease.InOutBack);
+            //transform.DORotate(new Vector3(0, 0, 0), _data.PotaTiming);
         }
 
         private void OnBasket()
         {
-            transform.DOMoveX(_data.InitializeXPos * (_isOnRight ? 1 : -1), _data.PotaTiming).SetEase(Ease.InOutBack).OnComplete(() => gameObject.SetActive(false)); 
+            transform.DOMoveX(_data.InitializeXPos * (_isOnRight ? 1 : -1), _data.PotaTiming).SetEase(Ease.InOutBack).OnComplete(() => gameObject.SetActive(false));
+            transform.DOLocalRotate(new Vector3(0, (_isOnRight ? _data.RightEuler : _data.LeftEuler), -90), _data.PotaTiming);
         }
     }
 }

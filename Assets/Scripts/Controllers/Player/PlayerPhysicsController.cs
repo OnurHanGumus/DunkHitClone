@@ -51,7 +51,6 @@ namespace Controllers
                         ScoreSignals.Instance.onComboBasket?.Invoke(false);
 
                     }
-                    Debug.Log(Mathf.Abs(rig.velocity.y));
                 }
             }
             else if (other.CompareTag("Ground"))
